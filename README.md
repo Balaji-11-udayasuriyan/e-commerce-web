@@ -14,7 +14,7 @@ Follow these steps to install and run the Laravel project locally:
 
 1. Clone the repository and navigate into it:
    git clone https://github.com/balaji-11-udayasuriyan/e-commerce-web
-   cd blog
+   cd e-commerce-web
 
 2. Install PHP dependencies using Composer:
    composer install
