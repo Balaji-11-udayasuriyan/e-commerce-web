@@ -18,5 +18,7 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /var/www/html
 
+COPY . .   # ✅ This ensures artisan and all files are available
+
 # Set default command to run Laravel
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
