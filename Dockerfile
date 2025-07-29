@@ -1,6 +1,6 @@
 FROM laravelsail/php83-composer
 
-# Install required PHP extensions and system dependencies
+# Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -18,7 +18,15 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /var/www/html
 
-COPY . .   # ✅ This ensures artisan and all files are available
+# Copy app files
+COPY . .
 
-# Set default command to run Laravel
+# Install PHP dependencies
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# Fix permissions (important for Laravel)
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 storage bootstrap/cache
+
+# Set default command
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
