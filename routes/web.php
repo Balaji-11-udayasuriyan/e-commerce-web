@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::get('/register', [UserController::class, 'showRegister'])->name('register');
 Route::post('/register', [UserController::class, 'register']);
